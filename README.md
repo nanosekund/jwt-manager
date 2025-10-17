@@ -103,3 +103,12 @@ Some example structured failure codes returned by validation:
 - `not_yet_valid` — token's `nbf` is in the future
 - `iat_in_future` — token's `iat` is in the future (if enforced)
 - `invalid_issuer` — `iss` claim doesn't match configured issuer
+
+## decodeToken() optional parameter
+
+`decodeToken($token, $asStdClass = false)` now accepts an optional second parameter. By default it returns the payload as an associative array. If you prefer object-style access, pass `true` to receive a `stdClass` object:
+
+```php
+$payloadArray = $mgr->decodeToken($token);           // associative array (default)
+$payloadObject = $mgr->decodeToken($token, true);    // stdClass object: $payloadObject->sub
+```

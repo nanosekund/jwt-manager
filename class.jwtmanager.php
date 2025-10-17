@@ -293,9 +293,10 @@ class Manager
     /**
      * Decodes the payload from a JWT token
      * @param string $token - JWT token to decode
+     * @param bool $asStdClass - If true, return payload as stdClass object; if false, return as associative array
      * @return array|null - Payload as a PHP array, or null if invalid
      */
-    public function decodeToken($token)
+    public function decodeToken($token, $asStdClass = false)
     {
         $parts = explode('.', $token);
         if (count($parts) !== 3) {
@@ -309,7 +310,7 @@ class Manager
             return null;
         }
         $payload = json_decode($payloadJson, true);
-        return $payload;
+        return $asStdClass ? (object)$payload : $payload;
     }
 }
 ?>
