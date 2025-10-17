@@ -309,8 +309,8 @@ class Manager
         if ($payloadJson === false) {
             return null;
         }
-        $payload = json_decode($payloadJson, true);
-        return $asStdClass ? (object)$payload : $payload;
+        $payload = json_decode($payloadJson, $asStdClass);
+        return $payload;
     }
 }
 ?>
